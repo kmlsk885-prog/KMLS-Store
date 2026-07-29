@@ -3,324 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KMLS Store - Free Fire Diamond Shop</title>
+    <title>Boutique Diamants Free Fire</title>
     <style>
-        :root {
-            --bg-color: #08090c;
-            --card-bg: #11131c;
-            --accent-color: #ff4500; /* Orange/Rouge Feu Gamer */
-            --accent-glow: #ff7700;
-            --text-color: #ffffff;
-            --text-muted: #6c7283;
-            --btn-green: #00e676;
-        }
-
-        body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            overflow-x: hidden;
-        }
-
-        /* --- DESIGN DU MENU GAMER & ANIMATIONS --- */
-        header {
-            background-color: rgba(17, 19, 28, 0.95);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--accent-color);
-            box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
-        }
-
-        .logo {
-            font-size: 26px;
-            font-weight: 900;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .logo span {
-            color: var(--accent-color);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .hero {
-            background: radial-gradient(circle, #1a101f 0%, #08090c 100%);
-            padding: 50px 20px;
-            text-align: center;
-            border-bottom: 1px solid #1f2233;
-        }
-
-        .hero h2 {
-            font-size: 38px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            text-shadow: 0 0 8px rgba(255,255,255,0.2);
-        }
-
-        /* --- PAGES / MENUS DU SITE --- */
-        .page {
-            display: none; /* Cache les pages par défaut */
-        }
-
-        .page.active {
-            display: block; /* Affiche uniquement la page active */
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- GRILLE ET BOUTONS ANIMÉS --- */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .product-card {
-            background: linear-gradient(145px, #161926, #11131c);
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            border: 1px solid #222638;
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            cursor: pointer;
-        }
-
-        /* Effet de survol gamer ultra stylé */
-        .product-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: var(--accent-color);
-            box-shadow: 0 10px 25px rgba(255, 69, 0, 0.25);
-        }
-
-        .card-icon {
-            font-size: 45px;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 0 10px #00d2ff);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .product-card h3 {
-            font-size: 20px;
-            margin: 10px 0;
-            text-transform: uppercase;
-        }
-
-        .product-price {
-            color: var(--btn-green);
-            font-weight: bold;
-            font-size: 18px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 5px rgba(0, 230, 118, 0.2);
-        }
-
-        /* Bouton Gamer Animé Neon */
-        .btn-gamer {
-            background: linear-gradient(90px, var(--accent-color), #ff7700);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
-            transition: all 0.2s;
-        }
-
-        .btn-gamer:hover {
-            filter: brightness(1.2);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        .btn-back {
-            background: #222638;
-            color: white;
-            border: 1px solid #3b405c;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        /* --- FENÊTRE DE L'ASSISTANCE IA (BOT) --- */
-        .ai-chat-button {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: linear-gradient(135px, #ff4500, #ff7700);
-            color: white;
-            border: none;
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: 1px;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(255, 69, 0, 0.5);
-            z-index: 999;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 69, 0, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 69, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 69, 0, 0); }
-        }
-
-        .ai-window {
-            display: none;
-            position: fixed;
-            bottom: 95px;
-            right: 25px;
-            width: 360px;
-            height: 480px;
-            background-color: var(--card-bg);
-            border: 2px solid var(--accent-color);
-            border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            z-index: 1000;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .ai-header {
-            background: linear-gradient(90px, var(--accent-color), #ff7700);
-            color: white;
-            padding: 15px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .ai-messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            background-color: #0b0c12;
-        }
-
-        .msg {
-            padding: 12px 16px;
-            border-radius: 10px;
-            max-width: 80%;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        .msg.bot {
-            background-color: #1c1f30;
-            color: white;
-            align-self: flex-start;
-            border-left: 3px solid var(--accent-color);
-        }
-
-        .msg.user {
-            background: var(--accent-color);
-            color: white;
-            align-self: flex-end;
-            font-weight: 500;
-        }
-
-        .ai-input-area {
-            display: flex;
-            padding: 12px;
-            background-color: var(--card-bg);
-            border-top: 1px solid #222638;
-        }
-
-        .ai-input-area input {
-            flex: 1;
-            padding: 12px;
-            background: #08090c;
-            border: 1px solid #222638;
-            color: white;
-            border-radius: 6px;
-        }
-
-        .ai-input-area button {
-            background: var(--btn-green);
-            color: black;
-            border: none;
-            padding: 0 18px;
-            margin-left: 8px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+        body { font-family: Arial, sans-serif; background-color: #121212; color: white; text-align: center; padding: 20px; }
+        .container { max-width: 600px; margin: auto; background: #1e1e1e; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        h1 { color: #ff6600; }
+        input, select, button { width: 90%; padding: 12px; margin: 10px 0; border-radius: 5px; border: none; font-size: 16px; }
+        input, select { background: #333; color: white; }
+        button { background: #ff6600; color: white; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #e05500; }
+        .pack-list { display: flex; flex-wrap: wrap; justify-content: space-around; margin: 20px 0; }
+        .pack { background: #2a2a2a; border: 2px solid #ff6600; padding: 15px; border-radius: 8px; width: 40%; margin: 10px 0; cursor: pointer; }
+        .pack.selected { background: #ff6600; color: black; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">KMLS <span>STORE</span></div>
-    </header>
+<div class="container">
+    <h1>💎 Free Fire Diamond Store</h1>
+    <p>Recharge instantanée par UID du joueur</p>
 
-    <section class="hero">
-        <h2>🔥 Free Fire Diamonds Shop 🔥</h2>
-        <p>Recharges instantanées automatisées par notre Intelligence Artificielle.</p>
-    </section>
+    <input type="text" id="playerID" placeholder="Entrez votre UID Free Fire (ex: 123456789)" required>
 
-    <!-- ================= PAGE 1 : MENU PRINCIPAL ================= -->
-    <main id="menuPage" class="container page active">
-        <div class="products-grid">
-            <!-- Choix Free Fire -->
-            <div class="product-card" onclick="navigateTo('freefirePage')">
-                <div class="card-icon">💎</div>
-                <h3>Garena Free Fire</h3>
-                <p style="color: var(--text-muted);">Acheter des diamants de 100 à 5000+ 💎</p>
-                <button class="btn-gamer">Ouvrir le menu</button>
-            </div>
-        </div>
-    </main>
+    <h3>Choisissez votre pack :</h3>
+    <div class="pack-list">
+        <div class="pack" onclick="selectPack(this, '100 Diamants', '1.00')">💎 100 Diamonds<br><b>1.00 USD</b></div>
+        <div class="pack" onclick="selectPack(this, '310 Diamants', '3.00')">💎 310 Diamonds<br><b>3.00 USD</b></div>
+        <div class="pack" onclick="selectPack(this, '520 Diamants', '5.00')">💎 520 Diamonds<br><b>5.00 USD</b></div>
+        <div class="pack" onclick="selectPack(this, '1060 Diamants', '10.00')">💎 1060 Diamonds<br><b>10.00 USD</b></div>
+    </div>
 
-    <!-- ================= PAGE 2 : MENU DES DIAMANTS FREE FIRE ================= -->
-    <main id="freefirePage" class="container page">
-        <button class="btn-back" onclick="navigateTo('menuPage')">⬅ Retour au menu</button>
-        <h3 style="border-left: 4px solid var(--accent-color); padding-left:10px;">Sélectionnez votre pack de diamants :</h3>
+    <button onclick="redirectToPayment()">⚡ Passer à la caisse</button>
+</div>
+
+<script>
+    let selectedPackName = "";
+    let selectedPackPrice = "";
+
+    function selectPack(element, name, price) {
+        let packs = document.querySelectorAll('.pack');
+        packs.forEach(p => p.classList.remove('selected'));
+        element.classList.add('selected');
+        selectedPackName = name;
+        selectedPackPrice = price;
+    }
+
+    function redirectToPayment() {
+        const uid = document.getElementById('playerID').value;
+        if (!uid) { alert("Veuillez entrer votre UID Free Fire !"); return; }
+        if (!selectedPackName) { alert("Veuillez choisir un pack de diamants !"); return; }
+
+        // REMPLACEZ CE LIEN PAR VOTRE LIEN DE PAIEMENT (PayPal, Stripe, ou WhatsApp)
+        const message = `Bonjour, je souhaite acheter le pack ${selectedPackName} (${selectedPackPrice} USD) pour l'UID Free Fire : ${uid}`;
+        const whatsappUrl = `https://wa.me{encodeURIComponent(message)}`;
         
-        <div class="products-grid">
-            <!-- Pack 1 -->
-            <div class="product-card" onclick="openAiWithOrder('100 Diamants', '1 200 FCFA')">
-                <div class="card-icon">💎</div>
-                <h3>100 Diamonds</h3>
-                <div class="product-price">1 200 FCFA</div>
-                <button class="btn-gamer">Acheter via l'IA</button>
-            </div>
+        window.location.href = whatsappUrl;
+    }
+</script>
 
-            <!-- Pack 2 -->
-            <div class="product-card" onclick="openAiWithOrder('210 Diamants', '2 400 FCFA')">
-                <div class="card-icon">💎💎</div>
-                <h3>210 Diamonds</h3>
-                <div class="product-price">2 400 FCFA</div>
-                
+</body>
+</html>
