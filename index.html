@@ -1,50 +1,126 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KMLS Store</title>
-<style>
-body{
-font-family:Arial,sans-serif;
-background:#111;
-color:white;
-text-align:center;
-margin:0;
-}
-header{
-background:#ff9800;
-padding:20px;
-}
-h1{
-margin:0;
-}
-button{
-background:#00c853;
-color:white;
-border:none;
-padding:15px 30px;
-font-size:18px;
-border-radius:8px;
-cursor:pointer;
-}
-section{
-padding:40px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMLS Store - Free Fire VIP</title>
+    <style>
+        :root {
+            --primary: #ff4500;
+            --secondary: #ff8c00;
+            --bg-dark: #08090c;
+            --card-bg: #13151b;
+            --text-main: #ffffff;
+            --text-muted: #a0aec0;
+            --accent: #00f0ff;
+        }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg-dark); color: var(--text-main); margin: 0; padding: 0; padding-bottom: 60px; }
+        header { background: linear-gradient(135deg, #1a0b02 0%, var(--bg-dark) 100%); border-bottom: 2px solid var(--primary); padding: 40px 20px; text-align: center; position: relative; overflow: hidden; }
+        h1 { margin: 0; font-size: 2.3em; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 4px 10px rgba(255, 69, 0, 0.2); }
+        .tagline { color: var(--text-muted); font-size: 1em; margin-top: 10px; font-weight: 500; }
+        .container { max-width: 600px; margin: 20px auto; padding: 0 15px; }
+        .card { background: var(--card-bg); border: 1px solid rgba(255, 69, 0, 0.15); border-radius: 16px; padding: 25px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); position: relative; overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; }
+        .card:hover { transform: translateY(-3px); border-color: var(--primary); }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--primary); }
+        .card.ia-card::before { background: var(--accent); }
+        h2 { font-size: 1.4em; margin: 0 0 10px 0; display: flex; align-items: center; gap: 10px; }
+        p { color: var(--text-muted); font-size: 0.95em; line-height: 1.5; margin: 0 0 20px 0; }
+        .price-badge { display: inline-block; background: rgba(255, 69, 0, 0.1); border: 1px solid rgba(255, 69, 0, 0.3); color: var(--secondary); padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.9em; margin-bottom: 20px; }
+        .card.ia-card .price-badge { background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); color: var(--accent); }
+        
+        /* Styles pour le sélecteur de marque */
+        label { display: block; text-align: left; color: var(--text-muted); margin-bottom: 8px; font-size: 0.9em; font-weight: 600; }
+        select { width: 100%; padding: 12px; background: #1c1f26; border: 1px solid rgba(255, 69, 0, 0.3); border-radius: 8px; color: white; font-size: 1em; margin-bottom: 20px; outline: none; }
+        select:focus { border-color: var(--primary); }
+
+        .btn { display: block; text-align: center; background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; padding: 14px; text-decoration: none; border-radius: 10px; font-weight: 700; text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3); transition: opacity 0.2s; border: none; width: 100%; cursor: pointer; }
+        .btn:active { opacity: 0.8; }
+        .btn.btn-ia { background: linear-gradient(90deg, #00b4d8, var(--accent)); box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3); }
+        footer { text-align: center; color: rgba(160, 174, 192, 0.4); font-size: 0.8em; margin-top: 40px; padding: 20px 0; }
+    </style>
 </head>
 <body>
 
-<header>
-<h1>Bienvenue sur KMLS Store</h1>
-<p>Votre boutique de jeux</p>
-</header>
+    <header>
+        <h1>⚡ KMLS STORE</h1>
+        <div class="tagline">L'univers Free Fire d'élite • Diamants & Configurations IA</div>
+    </header>
 
-<section>
-<h2>Achetez vos diamants Free Fire</h2>
-<p>Service rapide et sécurisé.</p>
-<button>Acheter maintenant</button>
-</section>
+    <div class="container">
+        <!-- Section Diamants -->
+        <div class="card">
+            <h2>💎 Recharges Diamants</h2>
+            <p>Alimentation instantanée et sécurisée via votre ID de joueur Free Fire. Sans risques de restriction ou bannissement.</p>
+            <div class="price-badge">À partir de 600 FCFA / 1 USD</div>
+            <a href="#" class="btn">Commander mes diamants</a>
+        </div>
+
+        <!-- Section Sensibilité Dynamique -->
+        <div class="card">
+            <h2>🎯 Sensibilités Headshot par IA</h2>
+            <p>Sélectionnez la marque de votre téléphone. Notre IA analysera votre modèle pour vous fournir les réglages DPI et sensibilités parfaits.</p>
+            
+            <label for="brand">Marque de votre smartphone :</label>
+            <select id="brand">
+                <option value="Inconnu">-- Choisir une marque --</option>
+                <option value="Samsung">Samsung</option>
+                <option value="TECNO">TECNO Mobile</option>
+                <option value="Infinix">Infinix</option>
+                <option value="iPhone">Apple (iPhone)</option>
+                <option value="Xiaomi">Xiaomi / Redmi</option>
+                <option value="Huawei">Huawei / Honor</option>
+                <option value="Itel">Itel</option>
+                <option value="Autre">Autre marque</option>
+            </select>
+
+            <button class="btn" onclick="demanderSensibilite()">Générer ma Sensibilité via l'IA</button>
+        </div>
+
+        <!-- Section Assistant IA -->
+        <div class="card ia-card">
+            <h2>🤖 Votre Assistant IA KMLS</h2>
+            <p>Une question sur une commande, un prix ou un problème technique ? Discutez instantanément avec notre intelligence artificielle disponible 24h/7.</p>
+            <div class="price-badge">Service Clientèle Automatique</div>
+            <button class="btn btn-ia" onclick="ouvrirChat()">Lancer la discussion</button>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 KMLS Store. Tous droits réservés. Outils non affiliés à Garena.
+    </footer>
+
+    <!-- Script pour lier les boutons au Chat IA Botpress -->
+    <script>
+        function ouvrirChat() {
+            if (window.botpressWebChat) {
+                window.botpressWebChat.sendEvent({ type: 'show' });
+            } else {
+                alert("L'assistant IA est en cours de chargement... Réessayez dans un instant.");
+            }
+        }
+
+        function demanderSensibilite() {
+            var marqueSelectionnee = document.getElementById("brand").value;
+            if (marqueSelectionnee === "Inconnu") {
+                alert("Veuillez d'abord sélectionner la marque de votre téléphone !");
+                return;
+            }
+            ouvrirChat();
+            // Envoyer automatiquement un message caché à l'IA avec la marque choisie
+            setTimeout(function() {
+                if (window.botpressWebChat) {
+                    window.botpressWebChat.sendPayload({
+                        type: 'text',
+                        text: "Je veux la sensibilité Free Fire pour un téléphone de marque " + marqueSelectionnee
+                    });
+                }
+            }, 1000);
+        }
+    </script>
+
+    <!-- SCRIPT DE L'ASSISTANT IA BOTPRESS (À configurer à l'étape suivante) -->
+    <script src="https://botpress.cloud"></script>
+    <script src="https://bpcontent.cloud"></script>
 
 </body>
 </html>
