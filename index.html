@@ -1,280 +1,333 @@
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KMLS Store - Gaming, Recharges & Assistant IA</title>
+    <title>KMLS Store - Free Fire Zone</title>
     <style>
+        /* Thème Gamer Cyberpunk / Orange Électrique */
         :root {
-            --bg-color: #0d0e12;
-            --card-bg: #161822;
-            --accent-color: #ff9800;
-            --text-color: #ffffff;
-            --text-muted: #8a8f9d;
-            --btn-green: #00c853;
-            --modal-bg: rgba(0, 0, 0, 0.8);
+            --bg-dark: #08090c;
+            --panel-bg: #11141d;
+            --input-bg: #181c27;
+            --accent-glow: #ff9800;
+            --neon-green: #00e676;
+            --text-main: #ffffff;
+            --text-gray: #7e8494;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            overflow-x: hidden;
         }
 
+        /* En-tête Gamer */
         header {
-            background-color: var(--card-bg);
-            padding: 15px 30px;
+            background-color: var(--panel-bg);
+            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #242736;
+            border-bottom: 2px solid #1e2333;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--accent-color);
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--accent-glow);
+            text-shadow: 0 0 10px rgba(255, 152, 0, 0.6);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 30px 20px;
         }
 
-        .section-title {
-            font-size: 22px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 10px;
+        .hero-banner {
+            background: linear-gradient(135px, #1c1f2e 0%, #08090c 100%);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            border: 1px solid #252b3d;
+            box-shadow: inset 0 0 30px rgba(255,152,0,0.05);
         }
 
-        .products-grid {
+        .hero-banner h1 {
+            font-size: 32px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* --- GRILLE DES OFFRES DE DIAMANTS --- */
+        .shop-section {
+            display: block; /* Visible par défaut */
+        }
+
+        .grid-diamonds {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            gap: 25px;
+            margin-top: 20px;
         }
 
-        .product-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
+        .diamond-card {
+            background-color: var(--panel-bg);
+            border: 1px solid #202636;
+            border-radius: 14px;
+            padding: 25px 20px;
             text-align: center;
-            border: 1px solid #242736;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .card-image-placeholder {
-            width: 100%;
-            height: 130px;
-            background: linear-gradient(45px, #2b2e42, #161822);
-            border-radius: 8px;
+        .diamond-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-glow);
+            box-shadow: 0 10px 25px rgba(255, 152, 0, 0.15);
+        }
+
+        .diamond-icon {
+            font-size: 45px;
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
+            filter: drop-shadow(0 0 10px #00d2ff);
+            animation: float 3s ease-in-out infinite;
         }
 
-        .btn-buy {
-            background-color: var(--btn-green);
-            color: white;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .diamond-card h3 {
+            font-size: 20px;
+            margin: 5px 0;
+            text-transform: uppercase;
+        }
+
+        .diamond-card .price {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--neon-green);
+            margin: 15px 0;
+            text-shadow: 0 0 5px rgba(0, 230, 118, 0.2);
+        }
+
+        /* 🔥 BOUTON ANIMÉ ET COOL (STYLE GAMER) 🔥 */
+        .btn-gamer {
+            background: linear-gradient(90px, #ff9800, #ff5722);
+            color: #000;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
+        }
+
+        .btn-gamer:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(255, 152, 0, 0.7);
+            color: #fff;
+        }
+
+        /* Effet de brillance qui traverse le bouton */
+        .btn-gamer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 30%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: rotate(25deg);
+            transition: none;
+        }
+
+        .btn-gamer:hover::after {
+            left: 140%;
+            transition: all 0.6s ease-in-out;
+        }
+
+        /* --- NOUVEAU MENU D'ACHAT (CAISSE) --- */
+        .checkout-section {
+            display: none; /* Caché au début, activé par le clic */
+            background-color: var(--panel-bg);
+            border: 2px solid #202636;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        }
+
+        .checkout-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #252b3d;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .btn-back {
+            background: none;
+            border: 1px solid var(--text-gray);
+            color: var(--text-main);
+            padding: 6px 12px;
             border-radius: 6px;
             cursor: pointer;
-            width: 100%;
             font-weight: bold;
         }
 
-        /* --- STYLE DE L'ASSISTANCE IA (BOT) --- */
-        .ai-chat-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--accent-color);
-            color: black;
-            border: none;
-            padding: 15px 20px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .btn-back:hover {
+            border-color: var(--accent-glow);
+            color: var(--accent-glow);
         }
 
-        .ai-window {
-            display: none;
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 350px;
-            height: 450px;
-            background-color: var(--card-bg);
-            border: 1px solid #242736;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
-            z-index: 1000;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .ai-header {
-            background-color: var(--accent-color);
-            color: black;
+        .item-summary {
+            background-color: var(--bg-dark);
             padding: 15px;
-            font-weight: bold;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-glow);
+            margin-bottom: 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .ai-messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
+        .form-gamer {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 20px;
         }
 
-        .msg {
-            padding: 10px 14px;
-            border-radius: 8px;
-            max-width: 80%;
-            font-size: 14px;
-        }
-
-        .msg.bot {
-            background-color: #242736;
-            color: white;
-            align-self: flex-start;
-        }
-
-        .msg.user {
-            background-color: var(--accent-color);
-            color: black;
-            align-self: flex-end;
-        }
-
-        .ai-input-area {
+        .input-block {
             display: flex;
-            padding: 10px;
-            background-color: var(--bg-color);
-            border-top: 1px solid #242736;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        .ai-input-area input {
-            flex: 1;
-            padding: 10px;
-            background: #161822;
-            border: 1px solid #333;
-            color: white;
-            border-radius: 4px;
+        .input-block label {
+            font-size: 13px;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            font-weight: bold;
+            letter-spacing: 0.5px;
         }
 
-        .ai-input-area button {
-            background: var(--btn-green);
+        .input-block input {
+            background-color: var(--input-bg);
+            border: 1px solid #252b3d;
+            padding: 14px;
+            border-radius: 8px;
             color: white;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .input-block input:focus {
+            border-color: var(--accent-glow);
+            outline: none;
+            box-shadow: 0 0 10px rgba(255,152,0,0.1);
+        }
+
+        .btn-pay-final {
+            background: linear-gradient(90px, #00e676, #00b0ff);
+            color: black;
+            font-weight: 900;
+            padding: 15px;
             border: none;
-            padding: 0 15px;
-            margin-left: 5px;
-            border-radius: 4px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-transform: uppercase;
             cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 230, 118, 0.3);
+            margin-top: 10px;
+        }
+
+        .btn-pay-final:hover {
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* --- SCRIPT IA EN BAS À DROITE --- */
+        .ai-chat-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #00b0ff;
+            color: black;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 176, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">KMLS Store</div>
+        <div class="logo">KMLS<span>STORE</span></div>
+        <div style="font-weight: bold; color: var(--text-gray);">FREE FIRE RECHARGE</div>
     </header>
 
-    <main class="container">
-        <h3 class="section-title">Boutique de Diamants & Diamants Free Fire</h3>
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="card-image-placeholder" style="color: #00d2ff;">💎 100 DIAMANTS</div>
-                <h3>Free Fire 100 Diamonds</h3>
-                <button class="btn-buy" onclick="toggleChat()">Acheter via l'IA</button>
+    <div class="container">
+        
+        <!-- --- SECTION 1 : LA BOUTIQUE PRINCIPALE --- -->
+        <div id="shopSection" class="shop-section">
+            <div class="hero-banner">
+                <h1>💎 Menu Diamants Free Fire 💎</h1>
+                <p style="color: var(--text-gray);">Choisissez votre pack. Livraison instantanée sur votre ID joueur.</p>
             </div>
-        </div>
-    </main>
 
-    <!-- --- BOUTON ET FENÊTRE DE L'IA --- -->
-    <button class="ai-chat-button" onclick="toggleChat()">💬 Assistant IA KMLS</button>
+            <div class="grid-diamonds">
+                <!-- Option 1 -->
+                <div class="diamond-card">
+                    <div class="diamond-icon">💎</div>
+                    <h3>100 + Bonus</h3>
+                    <div class="price">1 000 FCFA</div>
+                    <button class="btn-gamer" onclick="goToMenu('100 Diamants', '1 000 FCFA')">Sélectionner</button>
+                </div>
 
-    <div id="aiWindow" class="ai-window">
-        <div class="ai-header">
-            <span>🤖 KMLS Robot AI</span>
-            <span style="cursor:pointer;" onclick="toggleChat()">❌</span>
-        </div>
-        <div class="ai-messages" id="aiMessages">
-            <div class="msg bot">Salut ! Je suis l'IA de KMLS Store. <br><br>1️⃣ Écris <b>"Acheter"</b> pour me donner ton ID et ton numéro.<br>2️⃣ Écris le nom de ton téléphone (ex: <i>Infinix Hot 30</i>, <i>Tecno</i>, <i>iPhone</i>) pour avoir ta <b>sensibilité Free Fire Headshot</b> !</div>
-        </div>
-        <div class="ai-input-area">
-            <input type="text" id="aiInput" placeholder="Posez votre question ici..." onkeypress="checkEnter(event)">
-            <button onclick="sendAiMessage()">Envoyer</button>
-        </div>
-    </div>
+                <!-- Option 2 -->
+                <div class="diamond-card">
+                    <div class="diamond-icon">💎✨</div>
+                    <h3>210 + Bonus</h3>
+                    <div class="price">2 000 FCFA</div>
+                    <button class="btn-gamer" onclick="goToMenu('210 Diamants', '2 000 FCFA')">Sélectionner</button>
+                </div>
 
-    <script>
-        function toggleChat() {
-            const chat = document.getElementById('aiWindow');
-            chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
-        }
-
-        function checkEnter(event) {
-            if (event.key === 'Enter') sendAiMessage();
-        }
-
-        function sendAiMessage() {
-            const input = document.getElementById('aiInput');
-            const text = input.value.trim();
-            if (!text) return;
-
-            // Ajouter le message de l'utilisateur
-            appendMessage(text, 'user');
-            input.value = '';
-
-            // Réponse automatique de l'IA (Simulation intelligente)
-            setTimeout(() => {
-                let reply = "Désolé, je n'ai pas compris. Écris le nom de ton téléphone pour la sensibilité ou 'Acheter' pour ta commande.";
-                const lowerText = text.toLowerCase();
-
-                if (lowerText.includes('acheter') || lowerText.includes('id') || lowerText.includes('numéro')) {
-                    reply = "🛒 Pour valider votre recharge, veuillez s'il vous plaît m'écrire votre **ID Joueur Free Fire** suivi de votre **Numéro de paiement (Wave/Orange/MTN)**.";
-                } 
-                else if (lowerText.includes('iphone')) {
-                    reply = "📱 **Sensibilité Free Fire iPhone** :<br>• Générale : 98<br>• Point rouge : 95<br>• Viseur x2 : 100<br>• Viseur x4 : 94<br>• Bouton de tir : 45%";
-                }
-                else if (lowerText.includes('infinix') || lowerText.includes('tecno')) {
-                    reply = "📱 **Sensibilité Free Fire Infinix/Tecno** :<br>• Générale : 100<br>• Point rouge : 98<br>• Viseur x2 : 95<br>• Viseur x4 : 100<br>• Bouton de tir : 52%";
-                }
-                else if (lowerText.includes('samsung') || lowerText.includes('redmi') || lowerText.includes('xiaomi')) {
-                    reply = "📱 **Sensibilité Free Fire Android** :<br>• Générale : 95<br>• Point rouge : 90<br>• Viseur x2 : 92<br>• Viseur x4 : 95<br>• Bouton de tir : 48%";
-                }
-                else if (lowerText.includes('image') || lowerText.includes('générer')) {
-                    reply = "🎨 Pour créer des images gratuitement, je vous conseille d'intégrer le widget gratuit de **Coze.com** ou **Dialogflow** qui se connecte directement à l'IA DALL-E.";
-                }
-
-                appendMessage(reply, 'bot');
-            }, 800);
-        }
-
-        function appendMessage(text, sender) {
-            const container = document.getElementById('aiMessages');
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('msg', sender);
-            msgDiv.innerHTML = text;
-            container.appendChild(msgDiv);
-            container.scrollTop = container.scrollHeight;
-        }
-    </script>
-</body>
-</html>
+                <!-- Option 3 -->
+                <div class="diamond-card">
+                    <div class="diamond-icon">🎁💎</div>
+                    <h3>530 + Bonus</h3>
+                    <div class="price">4 800 FCFA</div>
+                    
