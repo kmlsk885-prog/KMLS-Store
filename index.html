@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otaku Diamonds | Free Fire Store</title>
+    <title>Otaku Diamonds | Boutique Professionnelle IA</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         :root {
@@ -11,14 +11,14 @@
             --container-bg: #1f2833;
             --neon-cyan: #66fcf1;
             --neon-purple: #9d4edd;
-            --text-main: #c5c6c7;
+            --text-muted: #8a8a8a;
         }
         body { 
             font-family: 'Poppins', sans-serif; 
             background-color: var(--bg-color); 
             color: white; 
             text-align: center; 
-            padding: 20px;
+            padding: 20px 0 0 0;
             margin: 0;
         }
         .container { 
@@ -37,8 +37,8 @@
             font-size: 2.2rem;
             margin-bottom: 5px;
         }
-        .subtitle { color: #8a8a8a; font-size: 0.95rem; margin-bottom: 25px; }
-        input { 
+        .subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; }
+        input[type="text"] { 
             width: 85%; 
             padding: 14px; 
             margin: 15px 0; 
@@ -87,7 +87,7 @@
         }
         button:hover { transform: scale(1.02); box-shadow: 0 0 25px rgba(157, 78, 221, 0.7); }
 
-        /* Style de la boîte d'I.A */
+        /* Interface Chat IA */
         .chat-box {
             display: none;
             max-width: 650px;
@@ -107,112 +107,113 @@
             display: flex;
             align-items: center;
         }
-        .avatar { width: 35px; height: 35px; border-radius: 50%; background: var(--neon-cyan); margin-right: 10px; display: inline-block; }
-        .chat-body { padding: 20px; max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .avatar { width: 35px; height: 35px; border-radius: 50%; background: var(--neon-cyan); margin-right: 10px; }
+        .chat-body { padding: 20px; height: 350px; max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
         .message { padding: 12px 16px; border-radius: 15px; max-width: 80%; line-height: 1.4; font-size: 0.95rem; }
         .ai-msg { background: #222; color: #fff; align-self: flex-start; border-left: 4px solid var(--neon-cyan); }
         .user-msg { background: var(--neon-purple); color: white; align-self: flex-end; }
-        .chat-footer { padding: 15px; background: #151a22; border-top: 1px solid #222; text-align: center; }
-        .pay-btn { background: #00b4d8; width: auto; display: inline-block; padding: 10px 25px; margin: 0; font-size: 15px; box-shadow: none; }
+        
+        .chat-input-area { display: flex; padding: 10px; background: #151a22; border-top: 1px solid #222; }
+        .chat-input-area input { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #444; background: #111; color: white; }
+        .send-btn { width: auto; margin: 0 0 0 10px; padding: 10px 20px; font-size: 14px; }
+        
+        .payment-banner { background: #240046; padding: 15px; text-align: center; border-top: 1px solid var(--neon-purple); }
+        .pay-btn { background: #00b4d8; width: 80%; padding: 10px; font-size: 16px; margin: 0; }
+
+        /* Pied de page et Politiques Professionnelles */
+        footer {
+            background-color: #060709;
+            border-top: 1px solid #1a222d;
+            padding: 40px 20px;
+            margin-top: 60px;
+            text-align: left;
+            font-size: 0.85rem;
+            color: #a0a5ad;
+        }
+        .footer-content { max-width: 900px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px; }
+        .footer-section h4 { color: var(--neon-cyan); font-family: 'Orbitron', sans-serif; font-size: 1rem; margin-top: 0; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-section p { line-height: 1.6; margin: 0 0 10px 0; }
+        .legal-notice { border-top: 1px solid #1a222d; padding-top: 20px; text-align: center; font-size: 0.75rem; color: #626873; line-height: 1.5; }
+        .legal-notice strong { color: #a0a5ad; }
     </style>
 </head>
 <body>
 
 <div class="container" id="shopContainer">
     <h1>❖ OTAKU DIAMONDS ❖</h1>
-    <div class="subtitle">Boutique Gaming Professionnelle • Livraison Sécurisée</div>
+    <div class="subtitle">Boutique Gaming Animé • Assistance IA Réelle</div>
 
     <input type="text" id="playerID" placeholder="ID JOUEUR FREE FIRE (UID)" required>
 
     <div class="pack-list">
         <div class="pack" onclick="selectPack(this, '100 Diamants', '1.00 USD')">
-            <span class="pack-title">💎 100 + Bonus</span>
+            <span class="pack-title">💎 100 Diamants</span>
             <span class="pack-price">1.00 USD</span>
         </div>
         <div class="pack" onclick="selectPack(this, '310 Diamants', '3.00 USD')">
-            <span class="pack-title">💎 310 + Bonus</span>
+            <span class="pack-title">💎 310 Diamants</span>
             <span class="pack-price">3.00 USD</span>
         </div>
         <div class="pack" onclick="selectPack(this, '520 Diamants', '5.00 USD')">
-            <span class="pack-title">💎 520 + Bonus</span>
+            <span class="pack-title">💎 520 Diamants</span>
             <span class="pack-price">5.00 USD</span>
         </div>
         <div class="pack" onclick="selectPack(this, '1060 Diamants', '10.00 USD')">
-            <span class="pack-title">💎 1060 + Bonus</span>
+            <span class="pack-title">💎 1060 Diamants</span>
             <span class="pack-price">10.00 USD</span>
         </div>
     </div>
 
-    <button onclick="startAiProcess()">⚡ Passer à la caisse</button>
+    <button onclick="startAiChat()">⚡ Passer à la caisse</button>
 </div>
 
-<!-- SECTION CHAT IA DE PAIEMENT -->
+<!-- BOX CHAT INTERACTIF IA -->
 <div class="chat-box" id="aiChatBox">
     <div class="chat-header">
-        <div class="avatar"></div>
-        <span>CYBER-ASSISTANT RECHARGE (IA v2.4)</span>
+        <div class="avatar" style="background-image: url('https://imgur.com'); background-size: cover;"></div>
+        <span>CYBER-ASSISTANT RECHARGE (IA Live)</span>
     </div>
-    <div class="chat-body" id="chatBody">
-        <!-- Les messages s'afficheront ici dynamiquement -->
+    <div class="chat-body" id="chatBody"></div>
+    
+    <div class="payment-banner">
+        <button class="pay-btn" onclick="redirectToWhatsApp()">🟢 Confirmer et Payer sur WhatsApp</button>
     </div>
-    <div class="chat-footer" id="chatFooter" style="display:none;">
-        <button class="pay-btn" onclick="confirmPaymentAndRedirect()">Finaliser le paiement via WhatsApp</button>
+
+    <div class="chat-input-area">
+        <input type="text" id="userInput" placeholder="Posez une question à l'IA...">
+        <button class="send-btn" onclick="sendMessageToAI()">Envoyer</button>
     </div>
 </div>
 
+<!-- FOOTER PROFESSIONNEL AVEC POLITIQUES -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Conditions de Livraison</h4>
+                <p>La recharge de diamants Free Fire s'effectue exclusivement via l'identifiant joueur (UID) fourni lors de la commande.</p>
+                <p>Le délai moyen d'activation constaté est de 5 à 15 minutes après validation définitive du paiement par notre équipe.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Politique de Remboursement</h4>
+                <p>En raison de la nature numérique des produits et de la livraison instantanée, toutes les transactions sont fermes et définitives.</p>
+                <p>Aucun remboursement ne sera accordé si vous fournissez un UID incorrect. Veuillez double-vérifier vos données avant de payer.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Sécurité & Confidentialité</h4>
+                <p>Otaku Diamonds s'engage à protéger vos données. Nous collectons uniquement votre UID pour l'envoi des diamants.</p>
+                <p>Aucun mot de passe ou identifiant de connexion de votre compte Free Fire (Facebook, Google) ne vous sera jamais demandé.</p>
+            </div>
+        </div>
+        <div class="legal-notice">
+            <p><strong>Avertissement légal :</strong> Ce site web est une plateforme commerciale indépendante. Elle n'est en aucun cas affiliée, approuvée, associée ou parrainée officiellement par Garena ou le jeu Free Fire. Toutes les marques déposées, logos et images associés au jeu appartiennent exclusivement à leurs propriétaires respectifs (Garena Online Private Limited).</p>
+            <p>&copy; 2026 Otaku Diamonds. Tous droits réservés. Plateforme sécurisée par chiffrement de bout en bout.</p>
+        </div>
+    </div>
+</footer>
+
 <script>
-    let selectedPackName = "";
-    let selectedPackPrice = "";
-
-    function selectPack(element, name, price) {
-        let packs = document.querySelectorAll('.pack');
-        packs.forEach(p => p.classList.remove('selected'));
-        element.classList.add('selected');
-        selectedPackName = name;
-        selectedPackPrice = price;
-    }
-
-    function startAiProcess() {
-        const uid = document.getElementById('playerID').value;
-        if (!uid) { alert("Veuillez saisir votre UID Free Fire !"); return; }
-        if (!selectedPackName) { alert("Sélectionnez votre pack de diamants d'abord !"); return; }
-
-        // Cacher la boutique, afficher l'interface IA
-        document.getElementById('shopContainer').style.display = 'none';
-        document.getElementById('aiChatBox').style.display = 'block';
-
-        // Lancement du dialogue de l'IA
-        addMessage("ai-msg", "Bonjour joueur ! 🤖 Analyse de la demande en cours... Connexion aux serveurs Garena établie.");
-        
-        setTimeout(() => {
-            addMessage("user-msg", `Commande initiée pour l'UID : ${uid}. Pack choisi : ${selectedPackName}.`);
-        }, 1200);
-
-        setTimeout(() => {
-            addMessage("ai-msg", `⚙️ Récapitulatif Validé !<br>• Compte : ${uid}<br>• Produit : ${selectedPackName}<br>• Montant : ${selectedPackPrice}<br><br>Pour finaliser l'envoi instantané de vos diamants, veuillez effectuer votre paiement auprès de mon gestionnaire humain.`);
-            document.getElementById('chatFooter').style.display = 'block';
-        }, 2800);
-    }
-
-    function addMessage(type, text) {
-        const chatBody = document.getElementById('chatBody');
-        const msgDiv = document.createElement('div');
-        msgDiv.className = `message ${type}`;
-        msgDiv.innerHTML = text;
-        chatBody.appendChild(msgDiv);
-        chatBody.scrollTop = chatBody.scrollHeight;
-    }
-
-    function confirmPaymentAndRedirect() {
-        const uid = document.getElementById('playerID').value;
-        const message = `🤖 [IA COMMANDE VALIDÉE]\n• UID Free Fire : ${uid}\n• Pack : ${selectedPackName}\n• Prix : ${selectedPackPrice}\n Je souhaite recevoir mes diamants.`;
-        
-        // METTEZ VOTRE VRAI NUMÉRO ICI À LA PLACE DE 243000000000
-        const whatsappUrl = `https://wa.me{encodeURIComponent(message)}`;
-        window.location.href = whatsappUrl;
-    }
-</script>
-
-</body>
-</html>
-
+    // CONFIGURATION UNIQUE
+    const OPENAI_API_KEY = "VOTRE_CLE_API_OPENAI_ICI"; 
+    
