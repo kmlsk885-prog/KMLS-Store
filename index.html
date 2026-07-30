@@ -1,602 +1,705 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>⚡ Diamant Shop – Free Fire</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Diamants Free Fire • IA & Animations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ===== RESET & BASE ===== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', 'Segoe UI', sans-serif;
     }
+
     body {
-      background: linear-gradient(145deg, #0b0c1a 0%, #1a1b3a 100%);
-      color: #fff;
-      min-height: 100vh;
-      padding: 1rem;
-      position: relative;
-      overflow-x: hidden;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0b0e14;
+      color: #e8edf2;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 2rem;
+      animation: bgPulse 8s infinite alternate;
     }
-    /* ===== PARTICULES ANIME (fond) ===== */
-    #particles-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
+
+    @keyframes bgPulse {
+      0% { background-color: #0b0e14; }
+      100% { background-color: #0f131c; }
     }
+
     .container {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
+      max-width: 480px;
       margin: 0 auto;
+      padding: 0 20px;
+      animation: fadeInUp 0.6s ease-out;
     }
-    /* ===== HEADER ===== */
-    .anime-header {
-      text-align: center;
-      padding: 2.5rem 1rem;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(8px);
-      border-radius: 30px;
-      margin-bottom: 2rem;
-      border: 1px solid rgba(255, 110, 199, 0.4);
-      box-shadow: 0 0 50px rgba(255, 110, 199, 0.2);
-      animation: glowPulse 3s infinite alternate;
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes glowPulse {
-      0% { box-shadow: 0 0 20px #ff6ec7; border-color: #ff6ec7; }
-      100% { box-shadow: 0 0 60px #ff3c9e; border-color: #ff3c9e; }
-    }
-    .anime-header h1 {
-      font-size: 3.2rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #ff6ec7, #ffd700);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: none;
-      letter-spacing: 2px;
-    }
-    .anime-header p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      margin-top: 0.5rem;
-      color: #ddd;
-    }
-    .anime-header .sub {
-      font-size: 0.9rem;
-      background: rgba(255, 215, 0, 0.2);
-      display: inline-block;
-      padding: 0.3rem 1.2rem;
-      border-radius: 30px;
-      margin-top: 0.5rem;
-      border: 1px solid #ffd700;
-    }
-    /* ===== PACKS ===== */
-    .packs {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      margin: 2rem 0;
-    }
-    .pack {
-      background: rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(12px);
-      border-radius: 24px;
-      padding: 1.8rem 1.2rem;
-      width: 210px;
-      text-align: center;
-      border: 1px solid rgba(255, 110, 199, 0.5);
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    }
-    .pack:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 0 40px rgba(255, 110, 199, 0.6);
-      border-color: #ffd700;
-    }
-    .pack .diamond-icon {
-      font-size: 3.5rem;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    .pack h3 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 0.2rem;
-    }
-    .pack .price {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #ffd700;
-      margin: 0.5rem 0;
-    }
-    .pack .price small {
-      font-size: 1rem;
-      color: #aaa;
-    }
-    .pack .bonus {
-      font-size: 0.8rem;
-      background: rgba(0, 212, 255, 0.2);
-      padding: 0.2rem 1rem;
-      border-radius: 20px;
-      display: inline-block;
-      margin-bottom: 1rem;
-      border: 1px solid #00d4ff;
-      color: #00d4ff;
-    }
-    .buy-btn {
-      background: linear-gradient(135deg, #ff6ec7, #ff3c9e);
-      border: none;
-      padding: 0.7rem 1.8rem;
-      border-radius: 40px;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 4px 15px rgba(255, 110, 199, 0.4);
-      letter-spacing: 1px;
-    }
-    .buy-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 25px rgba(255, 110, 199, 0.7);
-    }
-    /* ===== PANIER ===== */
-    .cart {
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      border-radius: 24px;
-      padding: 1.8rem;
-      margin: 2rem auto;
-      max-width: 650px;
-      border: 1px solid #00d4ff;
-      box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
-    }
-    .cart h2 {
-      color: #00d4ff;
+
+    /* Header */
+    .header {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 1.8rem;
-    }
-    #cart-items {
-      list-style: none;
-      padding: 0;
-      margin: 1rem 0;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-    #cart-items li {
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 0.6rem 0;
+      padding: 16px 0 12px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
-    #cart-items .remove {
-      background: none;
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #FF6B2B, #E62B0E);
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: white;
+      box-shadow: 0 8px 16px rgba(230, 43, 14, 0.3);
+      animation: logoPulse 2s infinite;
+    }
+
+    @keyframes logoPulse {
+      0% { box-shadow: 0 0 0 0 rgba(255,107,43,0.6); }
+      70% { box-shadow: 0 0 0 12px rgba(255,107,43,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,107,43,0); }
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: -0.5px;
+      color: white;
+    }
+    .logo-text span {
+      color: #FF7A45;
+    }
+
+    .trust-badges {
+      display: flex;
+      gap: 12px;
+      color: #b0b8c1;
+      font-size: 0.8rem;
+    }
+    .trust-badges i {
+      margin-right: 4px;
+      color: #2ecc71;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      margin: 24px 0 20px;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+    .hero h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #fff, #FFB088);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    .hero .sub {
+      color: #99a2ae;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .delivery-badge {
+      background: rgba(46, 204, 113, 0.15);
+      color: #2ecc71;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      animation: glowPulse 2s infinite;
+    }
+
+    @keyframes glowPulse {
+      0% { box-shadow: 0 0 5px rgba(46,204,113,0.3); }
+      50% { box-shadow: 0 0 15px rgba(46,204,113,0.6); }
+      100% { box-shadow: 0 0 5px rgba(46,204,113,0.3); }
+    }
+
+    /* ID section */
+    .id-section {
+      background: #1a1e26;
+      border-radius: 20px;
+      padding: 22px 18px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .id-section:focus-within {
+      transform: scale(1.01);
+      box-shadow: 0 0 20px rgba(255,107,43,0.15);
+    }
+    .id-section label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      color: #ccc;
+    }
+    .id-input-wrapper {
+      display: flex;
+      align-items: center;
+      background: #0f1219;
+      border-radius: 14px;
+      padding: 6px 6px 6px 18px;
+      border: 1px solid #2d323c;
+      transition: 0.2s;
+    }
+    .id-input-wrapper:focus-within {
+      border-color: #FF6B2B;
+      box-shadow: 0 0 0 3px rgba(255, 107, 43, 0.25);
+    }
+    .id-input-wrapper i {
+      color: #7f8894;
+      margin-right: 10px;
+    }
+    .id-input-wrapper input {
+      background: transparent;
       border: none;
-      color: #ff6ec7;
+      width: 100%;
+      padding: 12px 0;
+      font-size: 1rem;
+      color: white;
+      outline: none;
+    }
+    .id-input-wrapper .verify-btn {
+      background: #FF6B2B;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-left: 8px;
+      animation: subtlePulse 2s infinite;
+    }
+    .verify-btn:hover {
+      background: #e05a1f;
+      transform: scale(1.02);
+    }
+    @keyframes subtlePulse {
+      0% { box-shadow: 0 0 0 0 rgba(255,107,43,0.4); }
+      70% { box-shadow: 0 0 0 6px rgba(255,107,43,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,107,43,0); }
+    }
+    .id-help {
+      font-size: 0.75rem;
+      color: #8e97a5;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .id-help i {
+      color: #FF6B2B;
+    }
+
+    /* Packs */
+    .section-title {
+      font-weight: 700;
       font-size: 1.2rem;
+      margin: 20px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      animation: fadeInLeft 0.6s ease-out 0.3s both;
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .packs-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .pack-card {
+      background: #161b22;
+      border-radius: 18px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1);
+      cursor: pointer;
+      animation: fadeInUp 0.5s ease-out both;
+      transform-origin: center;
+    }
+    .pack-card:nth-child(1) { animation-delay: 0.35s; }
+    .pack-card:nth-child(2) { animation-delay: 0.4s; }
+    .pack-card:nth-child(3) { animation-delay: 0.45s; }
+    .pack-card:nth-child(4) { animation-delay: 0.5s; }
+    .pack-card:nth-child(5) { animation-delay: 0.55s; }
+
+    .pack-card:hover {
+      transform: translateY(-2px) scale(1.01);
+      border-color: #FF6B2B;
+      background: #1b202b;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+    }
+    .pack-card.selected {
+      border-color: #FF6B2B;
+      background: #1f2028;
+      box-shadow: 0 0 25px rgba(255, 107, 43, 0.35);
+      animation: selectedGlow 1.5s infinite alternate;
+    }
+    @keyframes selectedGlow {
+      from { box-shadow: 0 0 15px rgba(255,107,43,0.3); }
+      to { box-shadow: 0 0 30px rgba(255,107,43,0.5); }
+    }
+    .pack-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .diamond-icon {
+      background: #252c38;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #00d4ff;
+      transition: 0.3s;
+    }
+    .pack-card:hover .diamond-icon {
+      transform: rotate(10deg) scale(1.1);
+      color: #fff;
+    }
+    .pack-details .amount {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .pack-details .bonus {
+      color: #FF6B2B;
+      font-weight: 600;
+      font-size: 0.8rem;
+      background: rgba(255, 107, 43, 0.12);
+      padding: 2px 8px;
+      border-radius: 16px;
+      display: inline-block;
+      margin-top: 4px;
+      transition: 0.2s;
+    }
+    .pack-card:hover .bonus {
+      background: rgba(255, 107, 43, 0.25);
+    }
+    .pack-price {
+      text-align: right;
+    }
+    .pack-price .original {
+      text-decoration: line-through;
+      color: #6c757d;
+      font-size: 0.8rem;
+    }
+    .pack-price .final {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: white;
+    }
+
+    /* Toast */
+    .toast-message {
+      background: #1e2a1e;
+      border-left: 4px solid #2ecc71;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      margin-top: 15px;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      animation: slideInRight 0.4s ease-out;
+    }
+    .toast-message.show {
+      display: flex;
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeIn 0.2s ease;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal {
+      background: #1a1e26;
+      border-radius: 24px;
+      padding: 28px 24px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      border: 1px solid #2d323c;
+      animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal h3 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+    .modal .pack-recap {
+      background: #0f1219;
+      border-radius: 16px;
+      padding: 16px;
+      margin: 20px 0;
+    }
+    .modal .price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #FF7A45;
+      animation: priceBounce 0.6s ease;
+    }
+    @keyframes priceBounce {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .modal button {
+      background: linear-gradient(180deg, #FF7E3A 0%, #E62B0E 100%);
+      border: none;
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: white;
+      margin-top: 12px;
       cursor: pointer;
       transition: 0.2s;
     }
-    #cart-items .remove:hover { transform: scale(1.3); }
-    .cart-total {
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-align: right;
-      margin-top: 0.5rem;
-      border-top: 2px solid rgba(255, 215, 0, 0.3);
-      padding-top: 0.5rem;
-    }
-    .cart-total span { color: #ffd700; }
-    #checkout-btn {
-      background: linear-gradient(135deg, #00d4ff, #0088cc);
-      border: none;
-      padding: 0.8rem 2.5rem;
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: #fff;
-      cursor: pointer;
-      width: 100%;
-      transition: 0.3s;
-      margin-top: 1rem;
-      box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
-    }
-    #checkout-btn:hover {
+    .modal button:hover {
       transform: scale(1.02);
-      box-shadow: 0 6px 30px rgba(0, 212, 255, 0.5);
+      box-shadow: 0 6px 18px rgba(230,43,14,0.5);
     }
-    #payment-message {
-      background: #4caf50;
-      color: #fff;
-      padding: 0.8rem;
-      border-radius: 12px;
-      margin-top: 1rem;
-      display: none;
-      text-align: center;
-      font-weight: 600;
+    .modal .close-modal {
+      background: transparent;
+      color: #99a2ae;
+      font-size: 0.9rem;
+      margin-top: 8px;
+      box-shadow: none;
     }
-    /* ===== CHATBOT ===== */
-    .chatbot {
+
+    /* Chatbot */
+    .chat-widget {
       position: fixed;
       bottom: 20px;
       right: 20px;
       z-index: 999;
     }
-    #chat-toggle {
-      background: linear-gradient(135deg, #ff6ec7, #ff3c9e);
-      border: none;
-      padding: 14px 22px;
-      border-radius: 50px;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      box-shadow: 0 0 30px rgba(255, 110, 199, 0.5);
-      transition: 0.3s;
+    .chat-toggle {
+      background: linear-gradient(135deg, #FF6B2B, #E62B0E);
+      width: 56px;
+      height: 56px;
+      border-radius: 28px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      color: white;
+      font-size: 1.6rem;
+      box-shadow: 0 10px 20px rgba(230,43,14,0.4);
+      cursor: pointer;
+      transition: 0.2s;
+      animation: floatBtn 3s infinite ease-in-out;
     }
-    #chat-toggle:hover { transform: scale(1.05); }
-    #chat-window {
-      background: rgba(26, 27, 58, 0.95);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      width: 320px;
-      height: 420px;
+    @keyframes floatBtn {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+    .chat-toggle:hover {
+      transform: scale(1.1);
+    }
+    .chat-window {
       display: none;
-      flex-direction: column;
-      padding: 15px;
-      border: 1px solid #ff6ec7;
-      margin-bottom: 12px;
-      box-shadow: 0 0 40px rgba(255, 110, 199, 0.3);
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 300px;
+      background: #1a1e26;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      border: 1px solid #2d323c;
+      overflow: hidden;
+      animation: slideUp 0.3s ease;
     }
-    #chat-messages {
-      flex: 1;
+    .chat-window.active {
+      display: block;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .chat-header {
+      background: #0f1219;
+      padding: 14px;
+      font-weight: 600;
+      border-bottom: 1px solid #2d323c;
+    }
+    .chat-body {
+      padding: 16px;
+      height: 260px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 10px;
-      padding-right: 5px;
+      gap: 10px;
     }
-    #chat-messages .user {
-      align-self: flex-end;
-      background: #00d4ff;
-      color: #000;
-      padding: 8px 14px;
-      border-radius: 18px 18px 4px 18px;
-      max-width: 80%;
-    }
-    #chat-messages .bot {
-      align-self: flex-start;
-      background: #ff6ec7;
-      color: #fff;
-      padding: 8px 14px;
-      border-radius: 18px 18px 18px 4px;
-      max-width: 80%;
-    }
-    .chat-input-row {
-      display: flex;
-      gap: 8px;
-    }
-    #chat-input {
-      flex: 1;
+    .message {
       padding: 10px 14px;
-      border-radius: 30px;
-      border: none;
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
-      outline: none;
-      font-size: 0.95rem;
+      border-radius: 16px;
+      font-size: 0.85rem;
+      max-width: 85%;
+      animation: messagePop 0.2s ease;
     }
-    #chat-input::placeholder { color: #aaa; }
-    #chat-send {
-      background: #00d4ff;
+    @keyframes messagePop {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .message.bot {
+      background: #252c38;
+      align-self: flex-start;
+    }
+    .message.user {
+      background: #FF6B2B;
+      color: white;
+      align-self: flex-end;
+    }
+    .chat-input-area {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #2d323c;
+    }
+    .chat-input-area input {
+      flex: 1;
+      background: #0f1219;
       border: none;
-      padding: 10px 18px;
-      border-radius: 30px;
-      font-weight: 700;
-      color: #000;
+      border-radius: 20px;
+      padding: 10px 14px;
+      color: white;
+      outline: none;
+    }
+    .chat-input-area button {
+      background: #FF6B2B;
+      border: none;
+      color: white;
+      border-radius: 20px;
+      padding: 0 16px;
+      margin-left: 8px;
+      font-weight: 600;
       cursor: pointer;
       transition: 0.2s;
     }
-    #chat-send:hover { background: #00b8d4; }
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 700px) {
-      .anime-header h1 { font-size: 2.2rem; }
-      .pack { width: 100%; max-width: 280px; }
-      #chat-window { width: 280px; height: 380px; right: 0; }
+
+    .footer-note {
+      text-align: center;
+      color: #5c6673;
+      font-size: 0.7rem;
+      margin-top: 24px;
+      border-top: 1px solid #1e2530;
+      padding-top: 20px;
     }
-    /* scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb { background: #ff6ec7; border-radius: 10px; }
+
+    /* Succès animation supplémentaire */
+    .success-animation {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
   </style>
 </head>
 <body>
-
-  <!-- ===== PARTICULES ===== -->
-  <canvas id="particles-canvas"></canvas>
-
   <div class="container">
-
-    <!-- ===== HEADER ===== -->
-    <header class="anime-header">
-      <h1>⚡ Diamant Shop ⚡</h1>
-      <p>Les meilleurs prix pour Free Fire – Livraison instantanée</p>
-      <span class="sub">✨ +10% bonus sur tous les packs ✨</span>
-    </header>
-
-    <!-- ===== PACKS ===== -->
-    <section class="packs" id="packs-container">
-      <!-- Les packs seront générés par JS pour éviter la répétition -->
-    </section>
-
-    <!-- ===== PANIER ===== -->
-    <div class="cart">
-      <h2>🛒 Panier</h2>
-      <ul id="cart-items"></ul>
-      <div class="cart-total">Total : <span id="total">0.00</span> €</div>
-      <button id="checkout-btn">💳 Payer maintenant</button>
-      <div id="payment-message">✅ Paiement simulé réussi ! (remplace par Stripe)</div>
-    </div>
-
-    <!-- ===== CHATBOT ===== -->
-    <div class="chatbot">
-      <div id="chat-window">
-        <div id="chat-messages">
-          <div class="bot">👋 Salut ! Je suis ton assistante. Pose-moi une question sur les diamants, les prix ou la livraison.</div>
-        </div>
-        <div class="chat-input-row">
-          <input type="text" id="chat-input" placeholder="Écris un message..." />
-          <button id="chat-send">Envoyer</button>
-        </div>
+    <!-- Header -->
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-icon"><i class="fas fa-gem"></i></div>
+        <div class="logo-text">Diam<span>FF</span></div>
       </div>
-      <button id="chat-toggle">🤖 IA Assistante</button>
+      <div class="trust-badges">
+        <span><i class="fas fa-shield-alt"></i> SSL</span>
+        <span><i class="fas fa-star"></i> 4.9</span>
+      </div>
     </div>
 
+    <!-- Hero -->
+    <div class="hero">
+      <h1>Diamants Free Fire</h1>
+      <div class="sub">
+        <span class="delivery-badge"><i class="fas fa-bolt"></i> Livraison ~2 min</span>
+        <span>•</span>
+        <span>+10k clients</span>
+      </div>
+    </div>
+
+    <!-- ID Joueur -->
+    <div class="id-section">
+      <label><i class="far fa-id-card"></i> ID Joueur (UID) Free Fire</label>
+      <div class="id-input-wrapper">
+        <i class="fas fa-gamepad"></i>
+        <input type="text" id="uidInput" placeholder="Ex: 1234567890" inputmode="numeric" autocomplete="off">
+        <button class="verify-btn" id="verifyBtn">Vérifier</button>
+      </div>
+      <div class="id-help">
+        <i class="fas fa-info-circle"></i> Trouve ton ID dans ton profil (icône bannière) en haut à gauche.
+      </div>
+    </div>
+
+    <!-- Packs -->
+    <div class="section-title"><i class="fas fa-cubes"></i> Recharger</div>
+    <div class="packs-grid" id="packsContainer"></div>
+
+    <!-- Toast succès -->
+    <div class="toast-message" id="successToast">
+      <i class="fas fa-check-circle" style="color:#2ecc71;"></i>
+      <span id="toastText"></span>
+    </div>
+    <div class="footer-note">
+      © 2026 DiamFF - Revendeur partenaire agréé. Paiement 100% sécurisé.
+    </div>
+  </div>
+
+  <!-- Modale de confirmation -->
+  <div class="modal-overlay" id="paymentModal">
+    <div class="modal">
+      <h3>Confirmer l'achat</h3>
+      <div class="pack-recap" id="modalPackDetails"></div>
+      <div class="price" id="modalPrice"></div>
+      <button id="confirmPaymentBtn"><i class="fas fa-lock"></i> Payer maintenant</button>
+      <button class="close-modal" id="cancelPaymentBtn">Annuler</button>
+    </div>
+  </div>
+
+  <!-- Chatbot IA -->
+  <div class="chat-widget">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header"><i class="fas fa-robot"></i> DiamFF Assistant</div>
+      <div class="chat-body" id="chatBody">
+        <div class="message bot">👋 Salut ! Je suis là pour t'aider. Pose-moi une question.</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Écris ton message...">
+        <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+    <div class="chat-toggle" id="chatToggle"><i class="fas fa-comment-dots"></i></div>
   </div>
 
   <script>
-    // ============================================================
-    // 1. PARTICULES ANIME (canvas)
-    // ============================================================
-    (function initParticles() {
-      const canvas = document.getElementById('particles-canvas');
-      const ctx = canvas.getContext('2d');
-      let w, h;
-      const particles = [];
-      const count = 70;
+    (function() {
+      const packs = [
+        { id: 1, diamonds: 100, bonus: 10, price: 0.99, originalPrice: 1.29, name: "100 + 10 Diamants" },
+        { id: 2, diamonds: 310, bonus: 30, price: 2.99, originalPrice: 3.79, name: "310 + 30 Diamants" },
+        { id: 3, diamonds: 520, bonus: 60, price: 4.99, originalPrice: 6.49, name: "520 + 60 Diamants" },
+        { id: 4, diamonds: 1060, bonus: 130, price: 9.99, originalPrice: 12.99, name: "1060 + 130 Diamants" },
+        { id: 5, diamonds: 2180, bonus: 280, price: 19.99, originalPrice: 25.99, name: "2180 + 280 Diamants" }
+      ];
 
-      function resize() {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-      }
-      window.addEventListener('resize', resize);
-      resize();
+      let selectedPack = null;
+      let uidVerified = false;
+      let currentUID = '';
 
-      class Particle {
-        constructor() {
-          this.x = Math.random() * w;
-          this.y = Math.random() * h;
-          this.size = Math.random() * 3 + 1;
-          this.speedX = (Math.random() - 0.5) * 0.8;
-          this.speedY = (Math.random() - 0.5) * 0.8;
-          this.opacity = Math.random() * 0.6 + 0.2;
-        }
-        update() {
-          this.x += this.speedX;
-          this.y += this.speedY;
-          if (this.x < 0 || this.x > w) this.speedX *= -1;
-          if (this.y < 0 || this.y > h) this.speedY *= -1;
-        }
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 110, 199, ${this.opacity})`;
-          ctx.fill();
-          // petite traînée
-          ctx.shadowColor = '#ff6ec7';
-          ctx.shadowBlur = 10;
-        }
-      }
+      const packsContainer = document.getElementById('packsContainer');
+      const uidInput = document.getElementById('uidInput');
+      const verifyBtn = document.getElementById('verifyBtn');
+      const successToast = document.getElementById('successToast');
+      const toastText = document.getElementById('toastText');
+      const paymentModal = document.getElementById('paymentModal');
+      const modalPackDetails = document.getElementById('modalPackDetails');
+      const modalPrice = document.getElementById('modalPrice');
+      const confirmPaymentBtn = document.getElementById('confirmPaymentBtn');
+      const cancelPaymentBtn = document.getElementById('cancelPaymentBtn');
+      const chatToggle = document.getElementById('chatToggle');
+      const chatWindow = document.getElementById('chatWindow');
+      const chatBody = document.getElementById('chatBody');
+      const chatInput = document.getElementById('chatInput');
+      const sendChatBtn = document.getElementById('sendChatBtn');
 
-      for (let i = 0; i < count; i++) particles.push(new Particle());
+      function renderPacks() {
+        packsContainer.innerHTML = packs.map(pack => {
+          const selectedClass = (selectedPack && selectedPack.id === pack.id) ? 'selected' : '';
+          return `
+            <div class="pack-card ${selectedClass}" data-pack-id="${pack.id}">
+              <div class="pack-info">
+                <div class="diamond-icon"><i class="fas fa-gem"></i></div>
+                <div class="pack-details">
+                  <div class="amount">${pack.diamonds} Diamants</div>
+                  <div class="bonus">+${pack.bonus} bonus</div>
+                </div>
+              </div>
+              <div class="pack-price">
+                <div class="original">${pack.originalPrice.toFixed(2)}€</div>
+                <div class="final">${pack.price.toFixed(2)}€</div>
+              </div>
+            </div>
+          `;
+        }).join('');
 
-      function animate() {
-        ctx.clearRect(0, 0, w, h);
-        particles.forEach(p => { p.update(); p.draw(); });
-        requestAnimationFrame(animate);
-      }
-      animate();
-    })();
-
-    // ============================================================
-    // 2. DONNÉES DES PACKS
-    // ============================================================
-    const packsData = [
-      { id: 1, diamonds: 100, price: 5, bonus: 10, icon: '💎' },
-      { id: 2, diamonds: 300, price: 10, bonus: 20, icon: '💎' },
-      { id: 3, diamonds: 720, price: 20, bonus: 50, icon: '💎' },
-      { id: 4, diamonds: 1500, price: 35, bonus: 100, icon: '💎' },
-      { id: 5, diamonds: 3000, price: 60, bonus: 200, icon: '💎' }
-    ];
-
-    // ============================================================
-    // 3. GÉNÉRATION DES PACKS DANS LE DOM
-    // ============================================================
-    const packsContainer = document.getElementById('packs-container');
-    packsData.forEach(p => {
-      const div = document.createElement('div');
-      div.className = 'pack';
-      div.dataset.price = p.price;
-      div.dataset.diamonds = p.diamonds;
-      div.innerHTML = `
-        <span class="diamond-icon">${p.icon}</span>
-        <h3>${p.diamonds} Diamants</h3>
-        <div class="price">${p.price} <small>€</small></div>
-        <span class="bonus">+${p.bonus} offerts</span><br>
-        <button class="buy-btn">Acheter</button>
-      `;
-      packsContainer.appendChild(div);
-    });
-
-    // ============================================================
-    // 4. PANIER (LOGIQUE)
-    // ============================================================
-    const cart = [];
-    const cartItemsEl = document.getElementById('cart-items');
-    const totalEl = document.getElementById('total');
-    const checkoutBtn = document.getElementById('checkout-btn');
-    const paymentMsg = document.getElementById('payment-message');
-
-    // Ajouter au panier (clic sur "Acheter")
-    document.querySelectorAll('.buy-btn').forEach((btn, index) => {
-      btn.addEventListener('click', function() {
-        const pack = this.closest('.pack');
-        const price = parseFloat(pack.dataset.price);
-        const diamonds = pack.dataset.diamonds;
-        const name = pack.querySelector('h3').textContent;
-        cart.push({ name, price, diamonds });
-        updateCart();
-        // feedback visuel
-        this.textContent = '✅ Ajouté';
-        setTimeout(() => { this.textContent = 'Acheter'; }, 800);
-      });
-    });
-
-    function updateCart() {
-      cartItemsEl.innerHTML = '';
-      let total = 0;
-      cart.forEach((item, index) => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-          <span>${item.name} – ${item.price} €</span>
-          <button class="remove" data-index="${index}">✖</button>
-        `;
-        cartItemsEl.appendChild(li);
-        total += item.price;
-      });
-      totalEl.textContent = total.toFixed(2);
-      // Événements pour les boutons supprimer
-      document.querySelectorAll('.remove').forEach(btn => {
-        btn.addEventListener('click', function() {
-          const idx = parseInt(this.dataset.index);
-          cart.splice(idx, 1);
-          updateCart();
+        document.querySelectorAll('.pack-card').forEach(card => {
+          card.addEventListener('click', function(e) {
+            const packId = parseInt(this.dataset.packId, 10);
+            const pack = packs.find(p => p.id === packId);
+            if (pack) {
+              selectedPack = pack;
+              renderPacks();
+              if (uidVerified && currentUID) {
+                openPaymentModal();
+              } else {
+                alert('Merci de vérifier ton ID joueur avant de continuer.');
+                uidInput.focus();
+              }
+            }
+          });
         });
-      });
-    }
-
-    // ============================================================
-    // 5. PAIEMENT (simulé – à remplacer par Stripe)
-    // ============================================================
-    checkoutBtn.addEventListener('click', function() {
-      if (cart.length === 0) {
-        alert('🛒 Votre panier est vide.');
-        return;
       }
-      // Calcul du total
-      const total = cart.reduce((sum, item) => sum + item.price, 0);
-      // Simulation d'un paiement (remplace par redirection Stripe)
-      paymentMsg.style.display = 'block';
-      paymentMsg.textContent = '⏳ Traitement en cours...';
-      setTimeout(() => {
-        paymentMsg.textContent = '✅ Paiement réussi ! Vos diamants seront ajoutés sous 5 min.';
-        // Vider le panier
-        cart.length = 0;
-        updateCart();
-        // Option : rediriger vers un lien Stripe réel
-        // if (total === 5) window.location.href = 'https://buy.stripe.com/...';
-        // etc.
-      }, 2000);
-    });
 
-    // ============================================================
-    // 6. CHATBOT (IA simulée + possible API)
-    // ============================================================
-    const chatToggle = document.getElementById('chat-toggle');
-    const chatWindow = document.getElementById('chat-window');
-    const chatMessages = document.getElementById('chat-messages');
-    const chatInput = document.getElementById('chat-input');
-    const chatSend = document.getElementById('chat-send');
-
-    chatToggle.addEventListener('click', () => {
-      const isOpen = chatWindow.style.display === 'flex';
-      chatWindow.style.display = isOpen ? 'none' : 'flex';
-    });
-
-    function addMessage(text, sender) {
-      const div = document.createElement('div');
-      div.className = sender;
-      div.textContent = text;
-      chatMessages.appendChild(div);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    async function handleSend() {
-      const text = chatInput.value.trim();
-      if (!text) return;
-      addMessage(text, 'user');
-      chatInput.value = '';
-
-      // ====== SIMULATION IA (remplace par appel API) ======
-      // Pour une vraie IA, décommente et adapte :
-      /*
-      try {
-        const response = await fetch('https://ton-api.vercel.app/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text })
-        });
-        const data = await response.json();
-        addMessage(data.reply, 'bot');
-      } catch {
-        addMessage('Désolée, je suis en maintenance. Réessaie !', 'bot');
-      }
-      */
-
-      // Simulation locale (réponses intelligentes)
-      setTimeout(() => {
-        let reply = "Je suis ton assistante virtuelle. Je peux t'aider pour les commandes, les prix ou les délais.";
-        const lower = text.toLowerCase();
-        if (lower.includes('prix') || lower.includes('coût') || lower.includes('tarif')) {
-          reply = "Nos packs commencent à 5 € pour 100 diamants. Le pack 720 diamants est à 20 € avec 50 bonus !";
-        } else if (lower.includes('livraison') || lower.includes('delai') || lower.includes('temps')) {
-          reply = "La livraison est instantanée après validation du paiement (généralement 2 à 5 minutes).";
-        } else if (lower.includes('bonus') || lower.includes('offert')) {
-          reply = "Tous nos packs incluent des bonus ! Ex: 720 diamants + 50 offerts pour 20 €.";
-        } else if (lower.includes('merci') || lower.includes('cool') || lower.includes('super')) {
-          reply = "Avec plaisir ! N'hésite pas si tu as d'autres questions 😊";
-        } else if (lower.includes('aide') || lower.includes('que faire')) {
-          reply = "Tu peux choisir un pack, l'ajouter au panier, puis cliquer sur 'Payer maintenant'.";
-        }
-        addMessage(reply, 'bot');
-      }, 500);
-    }
-
-    chatSend.addEventListener('click', handleSend);
-    chatInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') handleSend();
-    });
-
-    // ============================================================
-    // 7. PETIT PLUS : animation de bienvenue du chatbot
-    // ============================================================
-    setTimeout(() => {
-      addMessage('🌟 Profite de nos offres ! Si tu as besoin d\'aide, je suis là.', 'bot');
-    }, 1500);
-  </script>
-</body>
-    </html>
+      function verifyUID() {
+        const uid = uidIn
